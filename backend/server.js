@@ -13,6 +13,7 @@ const { errorHandler, notFound } = require('./middleware/errorMiddleware')
 
 const createApp = () => {
   const app = express()
+  app.set('trust proxy', 1)
   const defaultOrigin = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:5173'
   const allowedOrigins = (process.env.CLIENT_ORIGIN || defaultOrigin)
     .split(',')
