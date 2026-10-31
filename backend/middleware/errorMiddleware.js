@@ -33,9 +33,16 @@ const errorHandler = (error, req, res, _next) => {
     message = 'An unexpected server error occurred'
   }
 
-  if (process.env.NODE_ENV !== 'production' && statusCode >= 500) {
-    console.error(error)
-  }
+  if (statusCode >= 500) {
+  console.error('[API ERROR]', {
+    method: req.method,
+    path: req.originalUrl,
+    errorName: error.name,
+    errorMessage: error.message,
+    errorCode: error.code,
+    stack: error.stack,
+  })
+}
 
   const response = { success: false, message }
   if (details) response.details = details
