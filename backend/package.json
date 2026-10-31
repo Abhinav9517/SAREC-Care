@@ -1,0 +1,33 @@
+{
+  "name": "sarec-care-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test --test-concurrency=1 tests/auth.test.js tests/passwordRecovery.test.js tests/grievances.test.js tests/admin.test.js tests/migration.test.js",
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "bootstrap-admin": "node scripts/bootstrapAdmin.js",
+    "migrate": "node scripts/backfill.js",
+    "smtp:check": "node scripts/checkSmtp.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.9",
+    "express": "^5.3.0",
+    "express-rate-limit": "^8.3.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.11.4",
+    "multer": "^2.5.0",
+    "nodemailer": "^10.3.1"
+  },
+  "devDependencies": {
+    "mongodb-memory-server": "^11.0.1",
+    "nodemon": "^3.1.14",
+    "supertest": "^7.1.4"
+  }
+}

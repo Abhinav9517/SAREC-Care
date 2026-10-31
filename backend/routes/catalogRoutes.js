@@ -1,0 +1,10 @@
+const express = require('express')
+const Category = require('../models/Category')
+const CampusLocation = require('../models/CampusLocation')
+const { authenticate } = require('../middleware/authMiddleware')
+const asyncHandler = require('../utils/asyncHandler')
+const router = express.Router()
+router.use(authenticate)
+router.get('/categories', asyncHandler(async (_req, res) => res.json({ success: true, data: await Category.find({ active: true }).select('_id name description').sort({ name: 1 }).lean() })))
+router.get('/locations', asyncHandler(async (_req, res) => res.json({ success: true, data: await CampusLocation.find({ active: true }).select('_id name description').sort({ name: 1 }).lean() })))
+module.exports = router
